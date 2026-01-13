@@ -1,144 +1,180 @@
+/* =========================
+   VARIABLES DE DISEÑO
+   ========================= */
 :root{
-  --bg-overlay: rgba(10, 15, 25, .62);
-  --card: rgba(255,255,255,.90);
-  --card-border: rgba(255,255,255,.45);
-  --text: #0b1220;
-  --muted: #4b5563;
-  --accent: #1d4ed8;
-  --accent-2: #0ea5e9;
-  --shadow: 0 30px 80px rgba(0,0,0,.35);
-  --radius: 22px;
+  --bg-overlay: rgba(18, 22, 30, 0.70);
+
+  --card-bg: rgba(255,255,255,0.92);
+  --card-border: rgba(0,0,0,0.08);
+
+  --text-main: #1f2937;      /* gris muy oscuro */
+  --text-muted: #6b7280;     /* gris medio */
+
+  --accent: #374151;         /* gris carbón */
+  --accent-soft: #9ca3af;    /* gris claro */
+
+  --btn-bg: #f9fafb;
+  --btn-border: #d1d5db;
+
+  --shadow-main: 0 40px 90px rgba(0,0,0,0.35);
+  --shadow-btn: 0 12px 28px rgba(0,0,0,0.12);
+
+  --radius-main: 24px;
+  --radius-btn: 18px;
 }
 
-*{ box-sizing: border-box; }
-html,body{ height:100%; }
+/* =========================
+   RESET BÁSICO
+   ========================= */
+*{
+  box-sizing: border-box;
+}
+
+html, body{
+  height: 100%;
+  margin: 0;
+}
 
 body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text-main);
 
   background:
-    linear-gradient(180deg, var(--bg-overlay), rgba(10,15,25,.72)),
-    url("assets/background.jpg");
+    linear-gradient(180deg, var(--bg-overlay), rgba(18,22,30,0.85)),
+    url("assets/imagen.jpg");
+
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
+/* =========================
+   LAYOUT GENERAL
+   ========================= */
 .page{
   min-height: 100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding: 34px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .card{
-  width: min(1180px, 94vw);
-  background: var(--card);
+  width: min(1200px, 96%);
+  background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: var(--radius-main);
+  box-shadow: var(--shadow-main);
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  overflow:hidden;
+  overflow: hidden;
 }
 
+/* =========================
+   HEADER
+   ========================= */
 .header{
-  padding: 30px 34px 18px;
-  border-bottom: 1px solid rgba(15,23,42,.10);
+  padding: 36px 40px 22px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .header h1{
-  margin:0 0 10px;
-  font-size: clamp(26px, 2.8vw, 40px);
+  margin: 0 0 10px;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.05;
 }
 
 .header p{
-  margin:0;
-  color: var(--muted);
+  margin: 0;
   font-size: 15px;
-  line-height: 1.6;
+  color: var(--text-muted);
 }
 
+/* =========================
+   GRID DE BOTONES
+   ========================= */
 .grid{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 18px;
-  padding: 26px 34px 34px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  padding: 34px 40px 42px;
 }
 
+/* =========================
+   BOTONES
+   ========================= */
 .btn{
-  position: relative;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 8px;
 
-  padding: 20px 20px 20px 56px; /* espacio para “barra” izquierda */
-  min-height: 98px;            /* BOTONES GRANDES */
-  border-radius: 18px;
-  text-decoration:none;
+  min-height: 110px;
+  padding: 24px 26px;
 
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(15,23,42,.12);
-  box-shadow: 0 14px 30px rgba(2,6,23,.10);
-  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
-  outline: none;
-}
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius-btn);
 
-.btn::before{
-  content:"";
-  position:absolute;
-  left: 16px;
-  top: 18px;
-  bottom: 18px;
-  width: 8px;
-  border-radius: 10px;
-  background: linear-gradient(180deg, var(--accent), var(--accent-2));
-  opacity: .95;
+  text-decoration: none;
+  color: var(--text-main);
+
+  box-shadow: var(--shadow-btn);
+  transition: all 0.2s ease;
 }
 
 .btn:hover{
-  transform: translateY(-3px);
-  border-color: rgba(29,78,216,.35);
-  box-shadow: 0 22px 44px rgba(2,6,23,.16);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px rgba(0,0,0,0.18);
+  border-color: var(--accent);
 }
 
 .btn-title{
-  font-weight: 800;
   font-size: 17px;
-  color: #0b1220;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
 .btn-subtitle{
-  font-size: 13.5px;
-  color: var(--muted);
+  font-size: 14px;
+  color: var(--text-muted);
 }
 
+/* =========================
+   FOOTER
+   ========================= */
 .footer{
-  border-top: 1px solid rgba(15,23,42,.10);
-  padding: 14px 34px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color: var(--muted);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding: 16px 40px;
   font-size: 13px;
+  color: var(--text-muted);
 }
 
-/* Responsive */
+/* =========================
+   RESPONSIVE
+   ========================= */
 @media (max-width: 900px){
-  .grid{ grid-template-columns: 1fr; }
-  .card{ width: min(760px, 94vw); }
+  .grid{
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 520px){
-  .header{ padding: 22px 18px 14px; }
-  .grid{ padding: 18px; gap: 14px; }
-  .footer{ padding: 12px 18px; }
-  .btn{ padding: 18px 18px 18px 52px; min-height: 92px; }
+  .header{
+    padding: 26px 22px 18px;
+  }
+
+  .grid{
+    padding: 22px;
+    gap: 16px;
+  }
+
+  .btn{
+    min-height: 96px;
+    padding: 20px;
+  }
+
+  .footer{
+    padding: 14px 22px;
+  }
 }
